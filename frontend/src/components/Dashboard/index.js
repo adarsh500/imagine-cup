@@ -11,6 +11,10 @@ import { drawMesh } from '../../utils';
 import '@tensorflow/tfjs-backend-cpu';
 import * as tf from '@tensorflow/tfjs-core';
 import * as tflite from '@tensorflow/tfjs-tflite';
+import Modal from '@mui/material/Modal';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import styles from './Dashboard.module.scss';
 
@@ -24,6 +28,15 @@ const Dashboard = () => {
   const [devices, setDevices] = useState([]);
   const [image, setImage] = useState(null);
   const [activeDeviceId, setActiveDeviceId] = useState('');
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [gender, setGender] = React.useState('');
+
+  const handleChange = (event) => {
+    setGender(event.target.value);
+  };
 
   const functionPredict = async function () {
     //
@@ -140,18 +153,81 @@ const Dashboard = () => {
           </div>
           <button
             className={styles.capture}
-            onClick={() => setImage(camera.current.takePhoto())}
+            onClick={() => {
+              setImage(camera.current.takePhoto());
+              handleOpen();
+            }}
           >
             Take photo
           </button>
           {image ? (
             <>
               <img className={styles.preview} src={image} alt="preview" />
-              <button>closeImage</button>
+              <button className={styles.capture}>closeImage</button>
             </>
           ) : null}
         </div>
       </div>
+      <Modal open={open} onClose={handleClose}>
+        <div className={styles.login}>
+          <h1 className={styles.title}>Enter patient details</h1>
+          <div className={styles.form}>
+            <div className={styles.inputField}>
+              <label>Age</label>
+              <div className={styles.input}>
+                <input type="text" placeholder="37" />
+              </div>
+            </div>
+
+            <div className={styles.inputField}>
+              <label>Gender</label>
+              <Select
+                sx={{
+                  border: '1px solid var(--border-light)',
+                  borderRadius: '8px',
+                  marginTop: '8px',
+                }}
+                value={gender}
+                label="Gender"
+                onChange={handleChange}
+                size={'small'}
+                fullWidth
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={'male'}>Male</MenuItem>
+                <MenuItem value={'female'}>Female</MenuItem>
+                <MenuItem value={'others'}>Others</MenuItem>
+              </Select>
+            </div>
+
+            <div className={styles.inputField}>
+              <label>Cholestrol levels</label>
+              <div className={styles.input}>
+                <input type="text" placeholder="" />
+              </div>
+            </div>
+
+            <div className={styles.ctaWrapper}>
+              <button
+                className={styles.submit}
+                onClick={handleClose}
+                disabled={loading}
+              >
+                Submit
+              </button>
+              <button
+                className={styles.submit}
+                onClick={handleClose}
+                disabled={loading}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

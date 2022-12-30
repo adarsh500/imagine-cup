@@ -1,12 +1,11 @@
 @import '../../styles/mixins.scss';
 
-button {
+.capture {
   background-color: var(--primary);
   color: white;
   border: none;
   border-radius: var(--border-medium);
   padding: 1rem 1.5em;
-  margin: 1rem;
   font-size: 20px;
   font-weight: 600;
   cursor: pointer;
@@ -84,12 +83,113 @@ button {
       }
     }
 
+    .capture {
+      margin: 1rem;
+    }
+
     .preview {
       @include content-size(600, 600);
 
       @include mobile {
         @include content-size(300, 500);
       }
+    }
+  }
+}
+
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+
+  justify-content: center;
+  text-align: left;
+  background-color: white;
+
+  .title {
+    @include font-size-weight(28, 36, 500);
+    color: var(--primary);
+
+    @include mobile {
+      @include font-size-weight(22, 30, 500);
+    }
+  }
+
+  .inputField {
+    display: flex;
+    flex-direction: column;
+    // width: 450px;
+    margin-top: 15px;
+
+    @include desktop {
+      // width: 450px;
+    }
+
+    @include mobile {
+      // width: 100% !important;
+      margin: 0 16px;
+    }
+
+    .input {
+      display: flex;
+
+      border: 1px solid var(--border-light);
+      padding: 10px 6px;
+      border-radius: var(--border-large);
+      margin-top: 8px;
+      //   @include font-size-weight(24, 20, 500);
+
+      .icon {
+        @include content-size(22, 22);
+        margin-left: 6px;
+        margin-right: 6px;
+      }
+
+      &:focus {
+        border: 1px solid var(--primary);
+      }
+    }
+  }
+
+  .ctaWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .submit {
+    width: 90px;
+    // margin-top: 16px;
+    border: none;
+    border-radius: var(--border-large);
+    padding: 4px 6px;
+    margin-right: 1rem;
+    @include font-size-weight(20, 30, 400);
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--border-medium);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      border-radius: var(--border-medium);
     }
   }
 }
