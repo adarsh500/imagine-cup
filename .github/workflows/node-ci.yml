@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: frontend
+        working-directory: './'
     strategy:
       matrix:
         node-version: [16.x, 18.x]
