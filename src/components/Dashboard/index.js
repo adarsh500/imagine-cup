@@ -26,7 +26,7 @@ const Dashboard = () => {
   const [image, setImage] = useState(null);
   const [activeDeviceId, setActiveDeviceId] = useState('');
   const [open, setOpen] = React.useState(false);
-  const [preview, setPreview] = useState(false);
+  // const [preview, setPreview] = useState(false);
   const [result, setResult] = useState(null);
   const [patientDetails, setPatientDetails] = useState({
     age: null,

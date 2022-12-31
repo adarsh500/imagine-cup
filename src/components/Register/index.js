@@ -3,10 +3,7 @@ import styles from './Register.module.scss';
 import { auth } from '../../firebase';
 import { useNavigate, Link } from 'react-router-dom';
 import { HiOutlineUserCircle, HiOutlineLockClosed } from 'react-icons/hi2';
-import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-} from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -93,8 +90,7 @@ const Register = () => {
           </button>
         </form>
         <span>
-          Already have an account?{' '}
-          <Link to="/">login</Link>
+          Already have an account? <Link to="/">login</Link>
         </span>
       </div>
     </div>

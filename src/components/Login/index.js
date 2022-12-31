@@ -10,7 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [user, isAuthloading, error] = useAuthState(auth);
+  const [user, isAuthloading] = useAuthState(auth);
   const navigate = useNavigate();
 
   useEffect(() => {
