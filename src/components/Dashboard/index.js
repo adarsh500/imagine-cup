@@ -203,24 +203,24 @@ const Dashboard = () => {
           </button>
 
           {!!result ? (
-            !result[0] ? (
-              <p
-                style={{
-                  color: 'green',
-                  opacity: 0.5,
-                }}
-              >
-                You are safe, the changes that you have CAD is{' '}
-                {(result[1] * 100).toString().slice(0, 4)} %
-              </p>
-            ) : (
+            result[0] ? (
               <p
                 style={{
                   color: 'orange',
                   opacity: 0.8,
                 }}
               >
-                You are unsafe, the changes that you have CAD is{' '}
+                The changes that you have CAD is{' '}
+                {(result[1] * 100).toString().slice(0, 4)} %
+              </p>
+            ) : (
+              <p
+                style={{
+                  color: 'green',
+                  opacity: 0.5,
+                }}
+              >
+                The changes that you have CAD is{' '}
                 {(result[1] * 100).toString().slice(0, 4)} %
               </p>
             )
