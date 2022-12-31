@@ -16,6 +16,7 @@ input:focus {
 
   .form {
     padding: 1rem;
+    width: 400px;
 
     @include mobile {
       padding: 1rem;

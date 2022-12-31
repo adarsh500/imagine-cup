@@ -9,7 +9,7 @@ import {
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyD9ADYlk6lygZHiz6BIY4C6VK84IZ8BG6w',
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: 'imagine-cup-5db88.firebaseapp.com',
   projectId: 'imagine-cup-5db88',
   storageBucket: 'imagine-cup-5db88.appspot.com',

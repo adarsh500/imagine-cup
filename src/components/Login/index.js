@@ -10,10 +10,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [user, isAuthloading, error] = useAuthState(auth);
+  const [user, isAuthloading] = useAuthState(auth);
   const navigate = useNavigate();
-
-  console.log(email, password);
 
   useEffect(() => {
     if (isAuthloading) {
@@ -40,10 +38,10 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="johndoe@xyz.com"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <p className={styles.errorMessage}>{error?.email}</p>
           </div>
 
           <div className={styles.inputField}>
@@ -56,7 +54,6 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <p className={styles.errorMessage}>{error?.password}</p>
           </div>
 
           {/* <Typography variant="body2" textAlign="right">

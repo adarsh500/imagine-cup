@@ -8,7 +8,7 @@ import {
 } from 'react-icons/hi2';
 import Navbar from '../Navbar';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import { generateUsername } from '../../utils/index';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 import styles from './Layout.module.scss';
@@ -33,8 +33,6 @@ const Layout = (props) => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
-  console.log(user, auth, location.pathname);
-
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate('/');
@@ -56,7 +54,9 @@ const Layout = (props) => {
           <span variant="outlined" className={styles.coll}>
             <div className={styles.collectionInfo}>
               <HiOutlineUserCircle className={styles.right} />
-              <p className={styles.collectionName}>John doe</p>
+              <p className={styles.collectionName}>
+                {generateUsername(user?.email)}
+              </p>
             </div>
           </span>
 

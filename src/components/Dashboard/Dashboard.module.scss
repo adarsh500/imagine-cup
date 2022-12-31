@@ -1,0 +1,204 @@
+@import '../../styles/mixins.scss';
+
+.capture {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-medium);
+  padding: 1rem 1.5em;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: var(--border-medium);
+  }
+}
+
+.dashboard {
+  .navbar {
+    background-color: #282c34;
+    color: white;
+    display: flex;
+    padding: 2rem;
+
+    p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .preview {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    @include content-size(200, 200);
+
+    @include mobile {
+      // @include content-size(300, 500);
+    }
+
+    img {
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: cover !important;
+    }
+  }
+
+  .main {
+    background-color: white;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+
+    .camera {
+      border-radius: var(--border-radius-medium);
+
+      position: relative;
+      width: 600px;
+      height: 600px;
+
+      @include mobile {
+        width: 300px;
+        height: 500px;
+      }
+
+      .webcam {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 9;
+        width: 300;
+        height: 300;
+      }
+
+      .canvas {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 9;
+        width: 300;
+        height: 300;
+      }
+    }
+
+    .capture {
+      margin: 1rem;
+    }
+  }
+}
+
+.login {
+  border-radius: var(--border-radius-medium);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+
+  justify-content: center;
+  text-align: left;
+  background-color: white;
+
+  .title {
+    @include font-size-weight(28, 36, 500);
+    color: var(--primary);
+
+    @include mobile {
+      @include font-size-weight(22, 30, 500);
+    }
+  }
+
+  .inputField {
+    display: flex;
+    flex-direction: column;
+    // width: 450px;
+    margin-top: 20px;
+
+    @include desktop {
+      // width: 450px;
+    }
+
+    @include mobile {
+      // width: 100% !important;
+      margin: 0 16px;
+    }
+
+    .input {
+      display: flex;
+
+      border: 1px solid var(--border-light);
+      padding: 10px 6px;
+      border-radius: var(--border-large);
+      margin-top: 8px;
+      //   @include font-size-weight(24, 20, 500);
+
+      .icon {
+        @include content-size(22, 22);
+        margin-left: 6px;
+        margin-right: 6px;
+      }
+
+      &:focus {
+        border: 1px solid var(--primary);
+      }
+    }
+  }
+
+  .ctaWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .submit {
+    border-radius: var(--border-large);
+    padding: 4px 6px;
+    margin-right: 1rem;
+    @include font-size-weight(20, 30, 400);
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border: 1px solid var(--primary);
+    border-radius: var(--border-medium);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: transparent;
+      color: var(--primary);
+      border-radius: var(--border-medium);
+    }
+  }
+}
