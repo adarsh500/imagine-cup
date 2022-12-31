@@ -49,6 +49,8 @@ const Dashboard = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    handleClose();
+
     const query = new URLSearchParams(patientDetails).toString();
     try {
       // ('https://beat-cad-classifier.azurewebsites.net/predict?age=52&sex=1&trestbps=125&chol=225&fbs=0');
@@ -66,7 +68,7 @@ const Dashboard = () => {
     } catch (err) {
       console.log(err);
     }
-    handleClose();
+    // handleClose();
   };
 
   const handleFormChange = (event) => {
@@ -210,18 +212,18 @@ const Dashboard = () => {
                   opacity: 0.8,
                 }}
               >
-                The changes that you have CAD is{' '}
-                {(result[1] * 100).toString().slice(0, 4)} %
+                There is a {(result[1] * 100).toString().slice(0, 4)}% chance
+                that you have CAD
               </p>
             ) : (
               <p
                 style={{
                   color: 'green',
-                  opacity: 0.5,
+                  opacity: 0.8,
                 }}
               >
-                The changes that you have CAD is{' '}
-                {(result[1] * 100).toString().slice(0, 4)} %
+                There is a {(result[1] * 100).toString().slice(0, 4)}% chance
+                that you don't have CAD
               </p>
             )
           ) : null}

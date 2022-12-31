@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './Register.module.scss';
 import { auth } from '../../firebase';
 import { useNavigate, Link } from 'react-router-dom';
+import { HiOutlineUserCircle, HiOutlineLockClosed } from 'react-icons/hi2';
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -31,12 +32,8 @@ const Register = () => {
       // Create a new user with email and password using firebase
       createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
-          sendEmailVerification(auth.currentUser)
-            .then(() => {
-              // setTimeActive(true);
-              navigate('/verify-email');
-            })
-            .catch((err) => alert(err.message));
+          // setTimeActive(true);
+          navigate('/dashboard');
         })
         .catch((err) => setError(err.message));
     }
@@ -46,46 +43,57 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
-      <div className="login">
-        <h1>Register</h1>
+    <div className={styles.container}>
+      <div className={styles.login}>
+        <h1 className={styles.title}>Welcome to Beat!</h1>
         {error && <div className="auth__error">{error}</div>}
         <form
           className={styles.form}
           onSubmit={register}
           name="registration_form"
         >
-          <input
-            className={styles.inputField}
-            type="email"
-            value={email}
-            placeholder="Enter your email"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <div className={styles.inputField}>
+            <label>Email</label>
+            <div className={styles.input}>
+              <HiOutlineUserCircle className={styles.icon} />
+              <input
+                type="email"
+                placeholder="johndoe@xyz.com"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+          </div>
 
-          <input
-            className={styles.input}
-            type="password"
-            value={password}
-            required
-            placeholder="Enter your password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className={styles.inputField}>
+            <label>Password</label>
+            <div className={styles.input}>
+              <HiOutlineLockClosed className={styles.icon} />
+              <input
+                type="password"
+                placeholder="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+          </div>
 
-          <input
-            className={styles.input}
-            type="password"
-            value={confirmPassword}
-            required
-            placeholder="Confirm password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+          <div className={styles.inputField}>
+            <label>Confirm Password</label>
+            <div className={styles.input}>
+              <HiOutlineLockClosed className={styles.icon} />
+              <input
+                type="password"
+                placeholder="password"
+                onChange={(e) => confirmPassword(e.target.value)}
+              />
+            </div>
+          </div>
 
-          <button type="submit">Register</button>
+          <button type="submit" className={styles.submit}>
+            Register
+          </button>
         </form>
         <span>
-          Already have an account?
+          Already have an account?{' '}
           <Link to="/">login</Link>
         </span>
       </div>

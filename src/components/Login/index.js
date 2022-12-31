@@ -38,10 +38,10 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="johndoe@xyz.com"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <p className={styles.errorMessage}>{error?.email}</p>
           </div>
 
           <div className={styles.inputField}>
@@ -54,7 +54,6 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <p className={styles.errorMessage}>{error?.password}</p>
           </div>
 
           {/* <Typography variant="body2" textAlign="right">
