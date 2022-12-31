@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Team BEAT
+## Scan in a heartbeat
+Helping people sense their heart’s health.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About
+Coronary Artery Disease (CAD) is associated with about 17.8 million deaths over the
+globe, the cases of which are observed to be especially higher in developing countries
+like India by 20-50%. The disease goes undetected until the first heart attack at which
+point heart muscles are already weakened due to plaque buildup of cholesterol in
+arteries.
 
-## Available Scripts
+BEAT explores a method to detect the onset and progress of CAD through iris of the
+eye, easily captured through any smartphone camera, reducing the screening time of
+9-12 hours through lipoprotein profile to less than a minute which enables the
+technology and medical aid to reach to a far larger population by making the inference
+process of online consultations with doctors a lot more efficient
 
-In the project directory, you can run:
+## Deployment
+Thanks to Microsoft Azure, we have deployed BEAT on Azure Web Apps at https://beat-app.azurewebsites.net.
 
-### `npm start`
+## Instructions
++ Live Demo
+The app is deployed on Azure Web Apps at [https://beat-app.azurewebsites.net], navigate to the url to use it directly.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
++ You can also download the dev version from GitHub.
+    + Software Requirements:
+        + Node.js
+    + Run the following steps to download and run the app.
+        1. Clone the repo
+        ```sh
+        git clone https://github.com/beat-ic/imagine-cup
+        ```
+        2. Move into the directory 
+        ```sh
+        cd imagine-cup
+        ```
+        3. Install all packages
+        ```sh
+        yarn install
+        ```
+        4. Run the app
+        ```sh
+        yarn start
+        ```
+        5. Navigate to [localhost:5000] to view the app.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thanks!
