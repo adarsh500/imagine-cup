@@ -6,12 +6,10 @@ import { sendEmailVerification } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 const VerifyEmail = () => {
-  const { currentUser } = useAuthValue();
+  const currentUser = useAuthValue();
   const [time, setTime] = useState(60);
   const { timeActive, setTimeActive } = useAuthValue();
   const navigate = useNavigate();
-
-  console.log('currentUser', currentUser);
 
   useEffect(() => {
     const interval = setInterval(() => {

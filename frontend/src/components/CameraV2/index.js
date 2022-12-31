@@ -27,15 +27,13 @@ const Camera = () => {
     const height = width / (4 / 3);
     const video = videoRef.current;
     const photo = photoRef.current;
-    const data = photo.toDataUrl('image/jpeg');
-    console.log(data);
+    // const data = photo.toDataUrl('image/jpeg');
 
     photo.width = width;
     photo.height = height;
 
     const ctx = photo.getContext('2d');
     ctx.drawImage(video, 0, 0, width, height);
-    console.log(ctx);
     setHasPhoto(true);
   };
 

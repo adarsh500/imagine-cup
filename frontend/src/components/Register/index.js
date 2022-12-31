@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './forms.scss';
+import styles from './Register.module.scss';
 import { auth } from '../../firebase';
 import { useNavigate, Link } from 'react-router-dom';
 import {
@@ -46,12 +46,17 @@ const Register = () => {
   };
 
   return (
-    <div className="center">
-      <div className="auth">
+    <div className="container">
+      <div className="login">
         <h1>Register</h1>
         {error && <div className="auth__error">{error}</div>}
-        <form onSubmit={register} name="registration_form">
+        <form
+          className={styles.form}
+          onSubmit={register}
+          name="registration_form"
+        >
           <input
+            className={styles.inputField}
             type="email"
             value={email}
             placeholder="Enter your email"
@@ -60,6 +65,7 @@ const Register = () => {
           />
 
           <input
+            className={styles.input}
             type="password"
             value={password}
             required
@@ -68,6 +74,7 @@ const Register = () => {
           />
 
           <input
+            className={styles.input}
             type="password"
             value={confirmPassword}
             required
@@ -79,7 +86,7 @@ const Register = () => {
         </form>
         <span>
           Already have an account?
-          <Link to="/login">login</Link>
+          <Link to="/">login</Link>
         </span>
       </div>
     </div>

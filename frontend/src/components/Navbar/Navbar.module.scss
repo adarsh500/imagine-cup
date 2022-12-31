@@ -1,22 +1,43 @@
+@import '../../styles/mixins.scss';
+
 .navbar {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   margin-top: 1rem;
   padding: 1rem 2rem;
-  align-items: flex-start;
+  align-items: center;
 
-  .title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 12px;
+  .head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    .title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .subTitle {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+      opacity: 0.5;
+    }
   }
 
-  .subTitle {
-    font-size: 1.5rem;
-    font-weight: 600;
+  .logout {
+    border-radius: var(--border-large);
+    padding: 4px 8px;
+    border: 1px solid var(--primary);
+    @include font-size-weight(18, 26, 400);
+    border-radius: var(--border-medium);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    background-color: transparent;
     color: var(--primary);
-    opacity: 0.5;
+    border-radius: var(--border-medium);
   }
 }

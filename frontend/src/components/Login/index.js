@@ -13,8 +13,6 @@ const Login = () => {
   const [user, isAuthloading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
-  console.log(email, password);
-
   useEffect(() => {
     if (isAuthloading) {
       // maybe trigger a loading screen

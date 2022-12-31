@@ -13,13 +13,10 @@ import * as tf from '@tensorflow/tfjs-core';
 import * as tflite from '@tensorflow/tfjs-tflite';
 import Modal from '@mui/material/Modal';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-
+import Select from '@mui/material/Select';
 import styles from './Dashboard.module.scss';
 
 const Dashboard = () => {
-  // const [cardImage, setCardImage] = useState();
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const [user, loading] = useAuthState(auth);
@@ -29,13 +26,57 @@ const Dashboard = () => {
   const [image, setImage] = useState(null);
   const [activeDeviceId, setActiveDeviceId] = useState('');
   const [open, setOpen] = React.useState(false);
+  const [preview, setPreview] = useState(false);
+  const [result, setResult] = useState(null);
+  const [patientDetails, setPatientDetails] = useState({
+    age: null,
+    sex: '',
+    chol: null,
+    fbs: null,
+    trestbps: null,
+  });
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setPatientDetails({
+      age: '',
+      sex: '',
+      trestbps: '',
+      chol: '',
+      fbs: '',
+    });
+    setOpen(false);
+  };
 
-  const [gender, setGender] = React.useState('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const query = new URLSearchParams(patientDetails).toString();
+    try {
+      // ('https://beat-cad-classifier.azurewebsites.net/predict?age=52&sex=1&trestbps=125&chol=225&fbs=0');
+
+      const res = await fetch(
+        `https://beat-cad-classifier.azurewebsites.net/predict?${query}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      const data = await res.json();
+      setResult(data.result);
+    } catch (err) {
+      console.log(err);
+    }
+    handleClose();
+  };
+
+  const handleFormChange = (event) => {
+    const { name, value } = event.target;
+    setPatientDetails({ ...patientDetails, [name]: value });
+  };
 
   const handleChange = (event) => {
-    setGender(event.target.value);
+    const { name, value } = event.target;
+    setPatientDetails({ ...patientDetails, [name]: value });
   };
 
   const functionPredict = async function () {
@@ -158,13 +199,31 @@ const Dashboard = () => {
               handleOpen();
             }}
           >
-            Take photo
+            Start analysis
           </button>
-          {image ? (
-            <>
-              <img className={styles.preview} src={image} alt="preview" />
-              <button className={styles.capture}>closeImage</button>
-            </>
+
+          {!!result ? (
+            !result[0] ? (
+              <p
+                style={{
+                  color: 'green',
+                  opacity: 0.5,
+                }}
+              >
+                You are safe, the changes that you have CAD is{' '}
+                {(result[1] * 100).toString().slice(0, 4)} %
+              </p>
+            ) : (
+              <p
+                style={{
+                  color: 'orange',
+                  opacity: 0.8,
+                }}
+              >
+                You are unsafe, the changes that you have CAD is{' '}
+                {(result[1] * 100).toString().slice(0, 4)} %
+              </p>
+            )
           ) : null}
         </div>
       </div>
@@ -175,7 +234,12 @@ const Dashboard = () => {
             <div className={styles.inputField}>
               <label>Age</label>
               <div className={styles.input}>
-                <input type="text" placeholder="37" />
+                <input
+                  type="text"
+                  placeholder="37"
+                  name="age"
+                  onChange={handleFormChange}
+                />
               </div>
             </div>
 
@@ -187,44 +251,101 @@ const Dashboard = () => {
                   borderRadius: '8px',
                   marginTop: '8px',
                 }}
-                value={gender}
+                value={patientDetails.sex}
                 label="Gender"
                 onChange={handleChange}
+                name="sex"
                 size={'small'}
                 fullWidth
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={'male'}>Male</MenuItem>
-                <MenuItem value={'female'}>Female</MenuItem>
-                <MenuItem value={'others'}>Others</MenuItem>
+                <MenuItem value={'1'}>Male</MenuItem>
+                <MenuItem value={'0'}>Female</MenuItem>
+              </Select>
+            </div>
+
+            <div className={styles.inputField}>
+              <label>Resting blood pressure</label>
+              <div className={styles.input}>
+                <input
+                  type="text"
+                  placeholder="80"
+                  name="trestbps"
+                  value={patientDetails.trestbps}
+                  onChange={handleFormChange}
+                />
+              </div>
+            </div>
+
+            <div className={styles.inputField}>
+              <label>Do you have diabetes?</label>
+              <Select
+                sx={{
+                  border: '1px solid var(--border-light)',
+                  borderRadius: '8px',
+                  marginTop: '8px',
+                }}
+                value={patientDetails.fbs}
+                label="Diabetes"
+                onChange={handleChange}
+                name="fbs"
+                size={'small'}
+                fullWidth
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={'1'}>Yes</MenuItem>
+                <MenuItem value={'0'}>No</MenuItem>
               </Select>
             </div>
 
             <div className={styles.inputField}>
               <label>Cholestrol levels</label>
               <div className={styles.input}>
-                <input type="text" placeholder="" />
+                <input
+                  type="text"
+                  placeholder="123"
+                  name="chol"
+                  value={patientDetails.chol}
+                  onChange={handleFormChange}
+                />
               </div>
             </div>
 
             <div className={styles.ctaWrapper}>
+              {/* <button
+                className={styles.submit}
+                onClick={() => setPreview(!preview)}
+              >
+                {preview ? 'Hide' : 'Preview scan'}
+              </button> */}
               <button
                 className={styles.submit}
-                onClick={handleClose}
+                onClick={handleSubmit}
                 disabled={loading}
               >
                 Submit
               </button>
-              <button
-                className={styles.submit}
-                onClick={handleClose}
-                disabled={loading}
-              >
+              <button className={styles.submit} onClick={handleClose}>
                 Cancel
               </button>
             </div>
+            {/* {image && preview ? (
+              <div className={styles.preview}>
+                <img
+                  // styles={{
+                  //   maxWidth: '100%',
+                  //   maxHeight: '100%',
+                  //   objectFit: 'contain',
+                  // }}
+                  src={image}
+                  alt="preview"
+                />
+              </div>
+            ) : null} */}
           </div>
         </div>
       </Modal>

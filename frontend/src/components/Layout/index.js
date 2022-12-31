@@ -33,8 +33,6 @@ const Layout = (props) => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
-  console.log(user, auth, location.pathname);
-
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate('/');

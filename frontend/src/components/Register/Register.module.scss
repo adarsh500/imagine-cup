@@ -1,0 +1,113 @@
+@import '../../styles/mixins.scss';
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  text-align: left;
+
+  .form {
+    padding: 1rem;
+
+    @include mobile {
+      padding: 1rem;
+      width: 100%;
+
+      // width: 100%;
+    }
+  }
+
+  .title {
+    @include font-size-weight(38, 20, 700);
+    color: var(--primary);
+
+    @include mobile {
+      @include font-size-weight(28, 20, 700);
+    }
+  }
+
+  .socialAuthWrapper {
+    margin-top: 20px;
+  }
+
+  .socialAuth {
+    @include display-flex();
+    min-width: 200px;
+    width: 100%;
+    border: none;
+    border-radius: var(--border-large);
+    padding: 16px 12px;
+    @include font-size(16, 12);
+    color: white;
+    background-color: var(--primary);
+  }
+
+  .inputField {
+    display: flex;
+    flex-direction: column;
+    // width: 450px;
+    margin-top: 15px;
+
+    @include desktop {
+      // width: 450px;
+    }
+
+    @include mobile {
+      // width: 100% !important;
+      margin: 0 16px;
+    }
+
+    .input {
+      display: flex;
+
+      border: 1px solid var(--border-light);
+      padding: 10px 6px;
+      border-radius: var(--border-large);
+      margin-top: 8px;
+      //   @include font-size-weight(24, 20, 500);
+
+      .icon {
+        @include content-size(22, 22);
+        margin-left: 6px;
+        margin-right: 6px;
+      }
+
+      &:focus {
+        border: 1px solid var(--primary);
+      }
+    }
+
+    .errorMessage {
+      @include font-size-weight(16, 10, 400);
+      margin: 6px 0 10px 0;
+      color: var(--error);
+    }
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .submit {
+    width: 100%;
+    margin-top: 16px;
+    border: none;
+    border-radius: var(--border-large);
+    padding: 14px 20px;
+    // margin: 0 1rem;
+    @include font-size(18, 12);
+    color: white;
+    background-color: var(--primary);
+  }
+}
