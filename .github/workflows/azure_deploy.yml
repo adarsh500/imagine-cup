@@ -51,5 +51,5 @@ jobs:
         with:
           app-name: 'beat-app'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_1e76672b041448369c155ae6836ab15d }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1E76672B041448369C155AE6836AB15D }}
           package: .
