@@ -45,3 +45,4 @@ The app is deployed on Azure Web Apps at [https://beat-app.azurewebsites.net], n
         5. Navigate to [localhost:5000] to view the app.
 
 Thanks!
+(c) Team BEAT
